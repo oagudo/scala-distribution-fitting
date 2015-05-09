@@ -19,4 +19,5 @@ case class NormalDistribution(mu: Double, sigma: Double) extends Distribution[Do
   def pdf(x: Double) : Double = throw new NotImplementedException()
 
   def random() : Double = throw new NotImplementedException()
+
 }

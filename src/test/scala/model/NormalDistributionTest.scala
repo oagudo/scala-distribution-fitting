@@ -1,7 +1,7 @@
 package model
 
 import math.abs
-import model.distribution.NormalDistribution
+import model.distribution.{Sample, NormalDistributionFitter, NormalDistribution}
 import org.scalatest.FunSuite
 import org.scalatest.prop.Checkers
 import org.scalacheck.Gen
@@ -9,7 +9,8 @@ import org.scalacheck.Prop.forAll
 
 class NormalDistributionTest extends FunSuite with Checkers {
 
-  val error = 1E-3
+  final val error = 1E-3
+  final val estimationError = 1E-1
 
   test("cdf and invCdf should be accurate enough") {
 
@@ -21,6 +22,15 @@ class NormalDistributionTest extends FunSuite with Checkers {
     forAll(distGen, Gen.choose(0.001,0.999)) { (dist, rnd) =>
       abs(dist.cdf(dist.invCdf(rnd)) - rnd) < error
     }.check
+  }
+
+  test("Normal distribution can be estimated from a set of values") {
+
+    val dist = NormalDistribution(2, 0.5)
+    val sample = new Sample((1 to 5000).map(x => dist.random()))
+    val distFit = NormalDistributionFitter.fit(sample)
+    check(abs(distFit.mu - dist.mu) < estimationError)
+    check(abs(distFit.sigma - dist.sigma) < estimationError)
   }
 }
 
