@@ -1,4 +1,4 @@
-package model
+package model.distribution
 
 trait Distribution[T] {
   def cdf(x: T) : Double
