@@ -1,7 +1,5 @@
 package model.distribution
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-
 object NormalDistributionFitter extends Fitter[NormalDistribution, Double] {
-  def fit(sample: Sample[Double]) : NormalDistribution =  throw new NotImplementedException()
+  def fit(sample: Sample) : NormalDistribution = NormalDistribution(sample.mean, scala.math.pow(sample.variance, 0.5))
 }

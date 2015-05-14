@@ -9,8 +9,8 @@ import org.scalacheck.Prop.forAll
 
 class NormalDistributionTest extends FunSuite with Checkers {
 
-  final val error = 1E-3
-  final val estimationError = 1E-1
+  final private val error = 1E-3
+  final private val estimationError = 1E-1
 
   test("cdf and invCdf should be accurate enough") {
 
@@ -29,6 +29,7 @@ class NormalDistributionTest extends FunSuite with Checkers {
     val dist = NormalDistribution(2, 0.5)
     val sample = new Sample((1 to 5000).map(x => dist.random()))
     val distFit = NormalDistributionFitter.fit(sample)
+
     check(abs(distFit.mu - dist.mu) < estimationError)
     check(abs(distFit.sigma - dist.sigma) < estimationError)
   }
