@@ -1,12 +1,13 @@
 package model.distribution
 
+import breeze.stats.distributions.Gaussian
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 case class NormalDistribution(mu: Double, sigma: Double) extends Distribution[Double] {
 
   require(sigma > 0)
 
-  private val impl = new breeze.stats.distributions.Gaussian(mu, sigma)
+  private val impl = new Gaussian(mu, sigma)
 
   def cdf(x: Double) : Double = impl.cdf(x)
 

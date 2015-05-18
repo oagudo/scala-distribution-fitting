@@ -1,7 +1,6 @@
 package model.distribution
 
 import breeze.stats.distributions.Uniform
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 case class UniformDistribution(low: Double, high: Double) extends Distribution[Double] {
 
@@ -17,7 +16,7 @@ case class UniformDistribution(low: Double, high: Double) extends Distribution[D
     impl.inverseCdf(y)
   }
 
-  def pdf(x: Double) : Double = throw new NotImplementedException()
+  def pdf(x: Double) : Double = impl.pdf(x)
 
   override def random() : Double = impl.sample
 }
