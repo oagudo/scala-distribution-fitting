@@ -1,13 +1,12 @@
-package model
+package model.distribution
 
 import model.fit.NormalDistributionFitter
-
-import math.abs
-import model.distribution.{Sample, NormalDistribution}
-import org.scalatest.FunSuite
-import org.scalatest.prop.Checkers
 import org.scalacheck.Gen
 import org.scalacheck.Prop.forAll
+import org.scalatest.FunSuite
+import org.scalatest.prop.Checkers
+
+import scala.math.abs
 
 class NormalDistributionTest extends FunSuite with Checkers {
 
