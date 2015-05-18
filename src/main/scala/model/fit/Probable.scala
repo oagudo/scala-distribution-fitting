@@ -7,7 +7,7 @@ trait Probable {
   def Prob() : Double
 }
 
-case class DistributionFit[D <: Distribution[T]](val dist : D) extends Probable {
+case class DistributionFit[D <: Distribution[T], T](val dist : D) extends Probable {
   def Prob() = throw new NotImplementedException()
 }
 
